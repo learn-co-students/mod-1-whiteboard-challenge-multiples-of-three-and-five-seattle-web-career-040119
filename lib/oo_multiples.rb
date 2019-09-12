@@ -1,29 +1,20 @@
 class Multiples
 
-  attr_reader :limit
+  attr_reader :limit, :multiples
 
 	def initialize(limit)
 		@limit = limit
+		@multiples = collect_multiples
 	end
 
 	def collect_multiples
-		final_ar = []
-		1.upto(limit-1) do |x|
-			if x % 3 == 0 || x % 5 == 0
-				final_ar << x
-			end
+		1.upto(@limit-1).select do |num|
+			num if num % 3 == 0 || num % 5 == 0
 		end
-		final_ar
 	end	
 
 	def sum_multiples
-		total = 0
-		1.upto(limit-1) do |x|
-			if x % 3 == 0 || x % 5 == 0
-				total += x
-			end
-		end
-		total
+		@multiples.sum
 	end	
 
 end
